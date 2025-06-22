@@ -1,1 +1,1 @@
-# OCR
+Sena Yüksel-Bensu Öztürk HomeWork
