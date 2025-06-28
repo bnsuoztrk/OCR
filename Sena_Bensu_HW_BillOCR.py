@@ -7,14 +7,14 @@ import os
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 image_paths = [
-    r"C:\Users\Lenovo\Desktop\TURKCELL\OCR\fatura.png",
     r"C:\Users\Lenovo\Desktop\TURKCELL\OCR\1.jpg",
     r"C:\Users\Lenovo\Desktop\TURKCELL\OCR\2.png",
     r"C:\Users\Lenovo\Desktop\TURKCELL\OCR\3.jpg",
+    r"C:\Users\Lenovo\Desktop\TURKCELL\OCR\4.png",
 ]
 
 for image_path in image_paths:
-    print(f"\n----- {os.path.basename(image_path)} işlemi başlatıldı -----------")
+    print(f"\n--------------------------- {os.path.basename(image_path)} işlemi başlatıldı ------------------------------------------------------------------")
 
     img = cv2.imread(image_path)
     img = cv2.resize(img, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
@@ -32,10 +32,13 @@ for image_path in image_paths:
         text = pytesseract.image_to_string(inverted, lang='tur+eng', config=config)
 
     print("OCR Çıktısı:\n", text)
+    cv2.imshow('th', thresh)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
     lines = [line.lower() for line in text.splitlines()]  # Satırları küçük harfe çevirip al
 
-    ## Fatura sonucu bulunmaya başlanıyorrr------------------->>>>
+    ## Fatura sonucu bulunmaya başlanıyorrr----------------------------------------------------------------------------------------------->>>>
 
     total_lines = [line for line in lines if re.search(r'\btotal\b', line)]  # "total" kelimesini tam eşleşme ile içeren
 
